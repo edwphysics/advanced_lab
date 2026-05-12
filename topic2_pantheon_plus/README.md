@@ -1,10 +1,41 @@
-### Topic 1: Metropolis Algorithm
+### Topic 2: Emcee and Pantheon+ Parameter Inference
 
-In the notebook
+Data used: [Pantheon+SH0ES](https://github.com/PantheonPlusSH0ES/DataRelease/tree/main/Pantheon%2B_Data/4_DISTANCES_AND_COVAR) supernova sample. The analysis follows a simplified version of [Brout et al. 2022](https://arxiv.org/pdf/2202.04077).
 
-The notebook is structured as follows:
+---
 
-1. 
+#### `pantheon_test_curves.ipynb`
+Sanity check notebook to verify the theoretical model and data are consistent before running inference.
+1. Load Pantheon+SH0ES data and apply basic cuts (`z > 0.01`, exclude Cepheid calibrators)
+2. Define the theoretical distance modulus `μ(z)` for flat ΛCDM using `astropy`
+3. Plot the Hubble diagram: data vs. theoretical curves for several `(H₀, Ωₘ)` combinations
+4. Explore the effect of varying `H₀` and `Ωₘ` separately
+
+---
+
+#### `pantheon_inference.ipynb`
+Main inference notebook. Runs `emcee` MCMC chains for four cosmological models using the Tripp (1998) distance estimator with nuisance parameters `(α, β, M)` inferred simultaneously. Statistical errors only; `δ_bias = δ_host = 0`.
+1. Load data and define shared functions: Tripp estimator, `σ_μ`, log-likelihood, sampler, and convergence diagnostics
+2. **Flat ΛCDM** — parameters: `(H₀, Ωₘ, α, β, M)`
+3. **Curved ΛCDM** — parameters: `(H₀, Ωₘ, Ωk, α, β, M)`
+4. **Flat wCDM** — parameters: `(H₀, Ωₘ, w, α, β, M)`
+5. **Flat w0waCDM** *(extra)* — parameters: `(H₀, Ωₘ, w₀, wₐ, α, β, M)`
+6. Save all chains to `chains/` for use in the comparison notebook
+
+Each model section reports: acceptance fraction, autocorrelation time, Steps/τ, effective sample size, Gelman-Rubin R̂, and a corner plot saved to `plots/`.
+
+---
+
+#### `pantheon_comparison.ipynb`
+Results and model comparison notebook. Loads the chains produced by `pantheon_inference.ipynb`.
+1. Load chains from `chains/`
+2. Summary table: median and 68% CI for all parameters across all models
+3. Hubble diagram with posterior predictive lines for all models + residual panel
+4. `H₀` and `Ωₘ` comparison across models with error bars
+5. Overlaid `H₀`–`Ωₘ` posterior contours (68% and 95%)
+6. Dark energy constraints: marginal posterior on `w` (wCDM) and `w₀`–`wₐ` plane (w0waCDM)
+
+All figures are saved to `plots/`.
 
 ### Findings
 

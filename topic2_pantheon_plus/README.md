@@ -35,7 +35,24 @@ Results and model comparison notebook. Loads the chains produced by `pantheon_in
 5. Overlaid `H₀`–`Ωₘ` posterior contours (68% and 95%)
 6. Dark energy constraints: marginal posterior on `w` (wCDM) and `w₀`–`wₐ` plane (w0waCDM)
 
+#### `emcee_tutorial.ipynb`
+Runs the official [emcee line-fitting tutorial](https://emcee.readthedocs.io/en/stable/tutorials/line/) as-is to verify the installation and understand the workflow before applying it to real data.
+
+---
+
+#### `emcee_line.ipynb`
+Applies the emcee line-fitting workflow to `data/line-1.dat` and `data/line-2.dat` (format: 3 rows — x, y, σ_y).
+1. Load both datasets
+2. Define the model: linear fit `y = mx + b` with a nuisance parameter `log(f)` to account for underestimated errors
+3. Find the Maximum Likelihood Estimate (MLE) with `scipy.optimize` as the starting point for the walkers
+4. Run `emcee` with 32 walkers using `DEMove` and `DESnookerMove` for robust exploration
+5. Trace plots and autocorrelation time → automatic burn-in and thinning
+6. Corner plots with 16/50/84 percentiles for both datasets
+7. Hubble diagram: data with error bars, posterior predictive band, and true line
+8. Convergence diagnostics: acceptance fraction, τ, Steps/τ, effective sample size, and Gelman-Rubin R̂
+
 All figures are saved to `plots/`.
+
 
 ### Findings
 

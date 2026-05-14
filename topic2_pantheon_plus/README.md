@@ -57,3 +57,5 @@ All figures are saved to `plots/`.
 ### Findings
 
 - When using the nuisance parameter for the line-1.dat data the system pushes logf -> -inf, which gives doesn't allow the walker to explore correctly the parameter space. The solution is to reset the position of logf inside the prior interval. This effect is due to the almost perfect agreement of data to the model indicating that for this problem there's is no need of this nuisance parameter.
+- TODO: The cuts in the contours seem to be related to the *prior*. For example, in OmM we can change the prior from $0.05<OmM<0.7$ to $-0.05<OmM<0.7$ such that the cut does not appear.
+- 

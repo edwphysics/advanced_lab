@@ -6,3 +6,7 @@
 	- Use AIC (max likelihood only) and BIC (bayesian) as a comparative test for the best model. She will send a paper about this AIC and BIC.
 	- We should find that our results are the same with emcee and MultiNesc -> Comparative Anlysis
 * Other examples to use MN: https://johannesbuchner.github.io/pymultinest-tutorial/example1.html
+
+## TODO
+
+- Find the differences of the inferenced parameters between MN and emcee

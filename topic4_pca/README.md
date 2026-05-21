@@ -14,3 +14,7 @@ Este tipo de templates son usados para por ejemplo para determinar el redshift d
 datos sinteticos. Ver por ejemplo: 
 • https://iopscience.iop.org/article/10.3847/1538-3881/ace35d/pdf
 • https://iopscience.iop.org/article/10.1086/668105/pdf
+
+- La reconstrucción debe hacerse en el RF.
+- Decidir qué rango de redshift RF se tomará apra la reconstrucción con PCA. Debe hacerse porque, de otro modo, el rango efectivo sería muy amplio y habría zonas sin información.
+	- Tomemos z>2.
